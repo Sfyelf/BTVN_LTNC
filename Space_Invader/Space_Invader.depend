@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1712596878 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\space_invader\main.cpp
+	"BaseFunc.h"
+	"BaseObject.h"
+
+1712593402 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\space_invader\basefunc.cpp
+	"BaseFunc.h"
+
+1712596669 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\space_invader\basefunc.h
+	<string>
+	<SDL.h>
+	<SDL_image.h>
+
+1712595014 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\space_invader\baseobject.cpp
+	"BaseObject.h"
+
+1712595014 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\space_invader\baseobject.h
+	"BaseFunc.h"
+
