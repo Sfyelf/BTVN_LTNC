@@ -31,7 +31,7 @@ bool InitData()
 
 bool LoadBackground()
 {
-    bool ret = g_background.LoadImg("graphics//bg.png", g_screen);
+    bool ret = g_background.LoadImg("E:\BTVN_LTNC_23020608_NguyenHuyHoang\BTVN_LTNC\Space_Invader\graphics\bg.png", g_screen);
     if (ret == false) return false;
 
     return true;
@@ -80,3 +80,4 @@ int main(int argc, char* argv[])
     close();
     return 0;
 }
+
