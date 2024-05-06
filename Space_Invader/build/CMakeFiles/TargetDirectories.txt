@@ -1,0 +1,3 @@
+D:/C++/Test/SDL2-Setup/build/CMakeFiles/sfys.dir
+D:/C++/Test/SDL2-Setup/build/CMakeFiles/edit_cache.dir
+D:/C++/Test/SDL2-Setup/build/CMakeFiles/rebuild_cache.dir

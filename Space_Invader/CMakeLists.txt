@@ -1,0 +1,46 @@
+cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 17)
+
+project(sfys)
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/lib")
+
+set(CMAKE_BUILD_TYPE "Debug") 
+# set(CMAKE_BUILD_TYPE "Release") 
+if (CMAKE_BUILD_TYPE EQUAL "Release")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-subsystem,windows")
+endif()
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
+find_package(SDL2 REQUIRED)
+find_package(SDL2_IMAGE REQUIRED)
+
+file(GLOB_RECURSE PROJECT_SOURCES
+    "src/*.cpp"
+    
+)
+
+set(PROJECT_INCLUDE
+    ${SDL2_INCLUDE_DIRS}
+    ${SDL2_IMAGE_INCLUDE_DIRS}
+    "src/"
+    "vendor/include/SDL2"
+)
+
+message(${PROJECT_INCLUDE})
+
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
+target_sources(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCES})
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_INCLUDE})
+target_link_libraries(${PROJECT_NAME} 
+    -lmingw32 -lSDL2main -lSDL2 -lSDL2_image 
+)
+
+target_compile_definitions(${PROJECT_NAME} PUBLIC ASSETS_PATH="${CMAKE_CURRENT_SOURCE_DIR}/asset")
+
+set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build")
+set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/lib")
+set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build/lib")
