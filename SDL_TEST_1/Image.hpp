@@ -1,19 +1,25 @@
 
+#ifndef GAMEOBJECT_HPP
+#define GAMEOBJECT_HPP
+
 #include "Game.hpp"
 
-class GameObject{
+class Image{
 public:
-    GameObject(const char* texturesheet, int x, int y);
-    ~GameObject();
+    Image(const char* texturesheet, int x, int y);
+    ~Image();
 
-    void Update();
     void Render();
 
-private:
     int xpos;
     int ypos;
+
+
+private:
 
     SDL_Texture* objTexture;
     SDL_Rect srcRect, destRect;
 
 };
+
+#endif

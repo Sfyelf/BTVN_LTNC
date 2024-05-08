@@ -1,14 +1,8 @@
 
 #include "Game.hpp"
 #include "TextureManager.hpp"
-#include "GameObject.hpp"
-
-//#include "ECS.hpp"
-//#include "Components.hpp"
-
-
-GameObject* ship;
-GameObject* aliens;
+#include "Image.hpp"
+#include "Ship.hpp"
 
 SDL_Renderer* Game::renderer = nullptr;
 
@@ -19,6 +13,8 @@ Game::Game()
 {}
 Game::~Game()
 {}
+
+Ship* ship = nullptr;
 
 void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -56,11 +52,13 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
     backgroundTexture = TextureManager::LoadTexture("graphics/bg.png");
 
-    ship = new GameObject("graphics/ship.png", 0, 0);
-    aliens = new GameObject("graphics/creep2.png", 50, 50);
-
 //    newShip.addComponent<PositionComponent>();
 
+}
+
+void Game::createObject()
+{
+    ship = new Ship();
 }
 
 void Game::handleEvents()
@@ -80,11 +78,7 @@ void Game::handleEvents()
 
 void Game::update()
 {
-    ship->Update();
-    aliens->Update();
-//    manager.update();
-//    std::cout << newShip.getComponent<PositionComponent>().x() << "," <<
-//        newShip.getComponent<PositionComponent>().y() << std::endl;
+
 
 }
 
@@ -95,8 +89,7 @@ void Game::render()
     //bg
     SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 
-    ship->Render();
-    aliens->Render();
+    ship->shipImage.Render();
 
     //where to add stuff
     SDL_RenderPresent(renderer);

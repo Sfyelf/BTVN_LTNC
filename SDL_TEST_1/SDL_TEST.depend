@@ -1,0 +1,67 @@
+# depslib dependency file v1.0
+1714619043 source:e:\i'm_back_c++\remind_starter\sdl_test\game.cpp
+	"Game.hpp"
+	"TextureManager.hpp"
+	"GameObject.hpp"
+
+1714619082 e:\i'm_back_c++\remind_starter\sdl_test\game.hpp
+	"SDL.h"
+	"SDL_image.h"
+	<iostream>
+
+1714615644 source:e:\i'm_back_c++\remind_starter\sdl_test\main.cpp
+	"Game.hpp"
+
+1714616066 source:e:\i'm_back_c++\remind_starter\sdl_test\texturemanager.cpp
+	"TextureManager.hpp"
+
+1714616066 e:\i'm_back_c++\remind_starter\sdl_test\texturemanager.hpp
+	"Game.hpp"
+
+1714616066 e:\i'm_back_c++\remind_starter\sdl_test\gameobject.hpp
+	"Game.hpp"
+
+1714616066 source:e:\i'm_back_c++\remind_starter\sdl_test\gameobject.cpp
+	"GameObject.hpp"
+	"TextureManager.hpp"
+
+1715174892 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\gameobject.cpp
+	"GameObject.hpp"
+	"TextureManager.hpp"
+
+1715174979 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\gameobject.hpp
+	"Game.hpp"
+
+1715175930 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.hpp
+	"SDL.h"
+	"SDL_image.h"
+	<iostream>
+
+1715137438 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\texturemanager.hpp
+	"Game.hpp"
+
+1715180149 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\main.cpp
+	"Game.hpp"
+
+1714616066 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\texturemanager.cpp
+	"TextureManager.hpp"
+
+1715180094 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.cpp
+	"Game.hpp"
+	"TextureManager.hpp"
+	"Image.hpp"
+	"Ship.hpp"
+
+1715180813 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.hpp
+	"Image.hpp"
+
+1715180916 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.cpp
+	"Ship.hpp"
+
+1715178660 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.hpp
+	"Game.hpp"
+
+1715180813 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.cpp
+	"Image.hpp"
+	"TextureManager.hpp"
+
