@@ -32,7 +32,7 @@
 1715174979 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\gameobject.hpp
 	"Game.hpp"
 
-1715175930 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.hpp
+1715367123 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.hpp
 	"SDL.h"
 	"SDL_image.h"
 	<iostream>
@@ -40,28 +40,45 @@
 1715137438 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\texturemanager.hpp
 	"Game.hpp"
 
-1715180149 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\main.cpp
+1715367730 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\main.cpp
 	"Game.hpp"
+	"Input.hpp"
+	"Time.hpp"
 
 1714616066 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\texturemanager.cpp
 	"TextureManager.hpp"
 
-1715180094 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.cpp
+1715367216 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.cpp
 	"Game.hpp"
+	"Input.hpp"
 	"TextureManager.hpp"
 	"Image.hpp"
 	"Ship.hpp"
 
-1715180813 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.hpp
+1715367694 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.hpp
 	"Image.hpp"
 
-1715180916 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.cpp
+1715367913 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.cpp
 	"Ship.hpp"
+	"Input.hpp"
+	"Time.hpp"
 
-1715178660 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.hpp
+1715367869 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.hpp
 	"Game.hpp"
 
-1715180813 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.cpp
+1715367885 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.cpp
 	"Image.hpp"
 	"TextureManager.hpp"
+
+1715365941 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\input.cpp
+	"Input.hpp"
+
+1715365929 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\input.hpp
+	"SDL.h"
+
+1715367654 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\time.cpp
+	"Time.hpp"
+
+1715367538 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\time.hpp
+	"SDL.h"
 

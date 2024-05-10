@@ -2,7 +2,7 @@
 #include "Image.hpp"
 #include "TextureManager.hpp"
 
-Image::Image(const char* texturesheet, int x, int y)
+Image::Image(const char* texturesheet, double x, double y)
 {
 
     objTexture = TextureManager::LoadTexture(texturesheet);

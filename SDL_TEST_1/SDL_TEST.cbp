@@ -38,11 +38,14 @@
 		<Unit filename="Game.hpp" />
 		<Unit filename="Image.cpp" />
 		<Unit filename="Image.hpp" />
+		<Unit filename="Input.cpp" />
 		<Unit filename="Input.hpp" />
 		<Unit filename="Ship.cpp" />
 		<Unit filename="Ship.hpp" />
 		<Unit filename="TextureManager.cpp" />
 		<Unit filename="TextureManager.hpp" />
+		<Unit filename="Time.cpp" />
+		<Unit filename="Time.hpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

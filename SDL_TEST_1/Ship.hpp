@@ -7,17 +7,17 @@ class Ship
 {
 public:
     Ship();
-    Image shipImage;
-    void Move(int direction);
 
-
-    // You might add a handleInput() function here later
+    void Render();
+    void HandleInput();
+    void HandleMove();
 
 private:
-    int speed;
+    Image shipImage;
 
+    double speed;
 
-
+    int inputDirection;
 };
 
 #endif

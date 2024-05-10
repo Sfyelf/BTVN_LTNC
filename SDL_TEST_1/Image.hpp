@@ -1,18 +1,18 @@
 
-#ifndef GAMEOBJECT_HPP
-#define GAMEOBJECT_HPP
+#ifndef IMAGE_HPP
+#define IMAGE_HPP
 
 #include "Game.hpp"
 
 class Image{
 public:
-    Image(const char* texturesheet, int x, int y);
+    Image(const char* texturesheet, double x, double y);
     ~Image();
 
     void Render();
 
-    int xpos;
-    int ypos;
+    double xpos;
+    double ypos;
 
 
 private:

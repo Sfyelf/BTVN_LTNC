@@ -1,5 +1,6 @@
 #include "Game.hpp"
-
+#include "Input.hpp"
+#include "Time.hpp"
 
 Game *game = nullptr;
 
@@ -14,14 +15,22 @@ int main(int argc, char** argv){
 
     game = new Game();
 
-    game->init("Space_Invader", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, 0);
+    if (!game->init("Space_Invader", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 640, 0))
+    {
+        throw;
+    }
+
     game->createObject();
 
-    while (game->running())
+    while (true)
     {
         frameStart = SDL_GetTicks();
 
-        game->handleEvents();
+        Input::Update();
+        if (Input::IsQuit()) break;
+
+        Time::Update();
+
         game->update();
         game->render();
 
@@ -31,6 +40,7 @@ int main(int argc, char** argv){
         {
             SDL_Delay(frameDelay - frameTime);
         }
+
     }
 
     game->clean();

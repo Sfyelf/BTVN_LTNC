@@ -1,5 +1,6 @@
 
 #include "Game.hpp"
+#include "Input.hpp"
 #include "TextureManager.hpp"
 #include "Image.hpp"
 #include "Ship.hpp"
@@ -16,7 +17,7 @@ Game::~Game()
 
 Ship* ship = nullptr;
 
-void Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
+bool Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
     int flags = 0;
     if (fullscreen)
@@ -34,6 +35,10 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         {
             std::cout << "Window created!" << std::endl;
         }
+        else
+        {
+            return false;
+        }
 
         renderer = SDL_CreateRenderer(window, -1, 0);
         if (renderer)
@@ -41,19 +46,20 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             std::cout << "Renderer created!" << std::endl;
         }
-
-        isRunning = 1;
-
+        else
+        {
+            return false;
+        }
     }
     else
     {
-        isRunning = 0;
+        return false;
     }
 
     backgroundTexture = TextureManager::LoadTexture("graphics/bg.png");
 
 //    newShip.addComponent<PositionComponent>();
-
+    return true;
 }
 
 void Game::createObject()
@@ -61,25 +67,12 @@ void Game::createObject()
     ship = new Ship();
 }
 
-void Game::handleEvents()
-{
-    SDL_Event event;
-    SDL_PollEvent(&event);
-    switch (event.type)
-    {
-    case SDL_QUIT:
-        isRunning = 0;
-        break;
-
-    default:
-        break;
-    }
-}
-
 void Game::update()
 {
+    Input::Update();
 
-
+    ship->HandleInput();
+    ship->HandleMove();
 }
 
 void Game::render()
@@ -89,7 +82,7 @@ void Game::render()
     //bg
     SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 
-    ship->shipImage.Render();
+    ship->Render();
 
     //where to add stuff
     SDL_RenderPresent(renderer);
