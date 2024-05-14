@@ -11,9 +11,13 @@ public:
     void Render();
     void HandleInput();
     void HandleMove();
+    void Shoot();
+    void UpdateBullet();
 
 private:
     Image shipImage;
+
+    float x, y;
 
     double speed;
 

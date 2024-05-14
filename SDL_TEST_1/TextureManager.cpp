@@ -9,3 +9,8 @@ SDL_Texture* TextureManager::LoadTexture(const char* texture)
 
     return tex;
 }
+
+void TextureManager::DestroyTexture(SDL_Texture* texture)
+{
+    SDL_DestroyTexture(texture);
+}

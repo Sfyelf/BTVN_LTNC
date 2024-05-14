@@ -32,6 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Aliens.cpp" />
+		<Unit filename="Aliens.hpp" />
+		<Unit filename="AliensManager.cpp" />
+		<Unit filename="AliensManager.hpp" />
+		<Unit filename="Bullet.cpp" />
+		<Unit filename="Bullet.hpp" />
 		<Unit filename="Components.hpp" />
 		<Unit filename="ECS.hpp" />
 		<Unit filename="Game.cpp" />

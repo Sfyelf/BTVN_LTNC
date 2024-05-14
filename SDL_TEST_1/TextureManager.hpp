@@ -8,6 +8,8 @@ class TextureManager{
 public:
     static SDL_Texture* LoadTexture(const char* filename);
 
+    static void DestroyTexture(SDL_Texture* texture);
+
 };
 
 #endif

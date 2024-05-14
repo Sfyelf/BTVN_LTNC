@@ -10,6 +10,7 @@ public:
     ~Image();
 
     void Render();
+    void ChangeImage(const char* texturesheet);
 
     double xpos;
     double ypos;

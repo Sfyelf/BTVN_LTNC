@@ -30,3 +30,9 @@ void Image::Render()
 
     SDL_RenderCopy(Game::renderer, objTexture, &srcrect, &drect);
 }
+
+void Image::ChangeImage(const char* texturesheet)
+{
+    TextureManager::DestroyTexture(objTexture);
+    objTexture = TextureManager::LoadTexture(texturesheet);
+}

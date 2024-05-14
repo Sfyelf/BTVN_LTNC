@@ -4,6 +4,8 @@
 #include "TextureManager.hpp"
 #include "Image.hpp"
 #include "Ship.hpp"
+#include "Aliens.hpp"
+#include "AliensManager.hpp"
 
 SDL_Renderer* Game::renderer = nullptr;
 
@@ -16,6 +18,7 @@ Game::~Game()
 {}
 
 Ship* ship = nullptr;
+AliensManager* alienManager = nullptr;
 
 bool Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
@@ -65,6 +68,10 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 void Game::createObject()
 {
     ship = new Ship();
+    alienManager = new AliensManager();
+//    alienManager->Spawn(10, 10);
+    alienManager->SpawnWave(50, 50, 8, 6, 90, 50);
+
 }
 
 void Game::update()
@@ -73,6 +80,7 @@ void Game::update()
 
     ship->HandleInput();
     ship->HandleMove();
+    alienManager->Update();
 }
 
 void Game::render()
@@ -83,6 +91,7 @@ void Game::render()
     SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 
     ship->Render();
+    alienManager->Render();
 
     //where to add stuff
     SDL_RenderPresent(renderer);
