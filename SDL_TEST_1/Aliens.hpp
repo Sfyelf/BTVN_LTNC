@@ -14,7 +14,9 @@ public:
     void Render();
     void Update();
 
-    double x, y;
+    double x, y, direct, check = 0;
+
+    SDL_Rect getRect();
 
 private:
     Image alienImage;

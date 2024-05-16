@@ -22,7 +22,7 @@ void Image::Render()
     int w, h;
     if (SDL_QueryTexture(objTexture, NULL, NULL, &w, &h) != 0)
     {
-        printf("Error: Texture null");
+        printf("Error: Texture null\n");
     }
 
     SDL_Rect drect = {xpos, ypos, w, h};
@@ -35,4 +35,17 @@ void Image::ChangeImage(const char* texturesheet)
 {
     TextureManager::DestroyTexture(objTexture);
     objTexture = TextureManager::LoadTexture(texturesheet);
+}
+
+SDL_Rect Image::getRect()
+{
+    int w, h;
+    if (SDL_QueryTexture(objTexture, NULL, NULL, &w, &h) != 0)
+    {
+        printf("Error: Texture null\n");
+    }
+
+    SDL_Rect drect = {xpos, ypos, w, h};
+
+    return drect;
 }

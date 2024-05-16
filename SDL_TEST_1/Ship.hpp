@@ -2,6 +2,9 @@
 #define SHIP_HPP
 
 #include "Image.hpp"
+#include <vector>
+#include <list>
+#include "Bullet.hpp"
 
 class Ship
 {
@@ -22,6 +25,11 @@ private:
     double speed;
 
     int inputDirection;
+
+    std::list <Bullet> bullets;
+
+    float bulletCooldown;    // Cooldown time in seconds
+    const float bulletCooldownTime;
 };
 
 #endif

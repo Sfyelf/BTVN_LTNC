@@ -15,6 +15,8 @@ public:
     double xpos;
     double ypos;
 
+    SDL_Rect getRect();
+
 
 private:
 

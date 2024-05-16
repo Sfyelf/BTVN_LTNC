@@ -12,7 +12,7 @@ public:
 
     void Render();
     void Move();
-    bool isOffScreen();
+    bool isOffScreen(float windowHeight);
 
     float x, y;
 

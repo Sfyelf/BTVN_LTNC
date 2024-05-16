@@ -3,7 +3,7 @@
 #include "Time.hpp"
 
 Bullet::Bullet(float xship, float yship) :
-    speed(20),
+    speed(300),
     bulletImage("graphics/bullet.png", x, y),
     x(xship),
     y(yship)
@@ -24,11 +24,12 @@ void Bullet::Move()
 
 void Bullet::Render()
 {
-    bulletImage.xpos = x;
+    bulletImage.xpos = x + 25;
     bulletImage.ypos = y;
+    bulletImage.Render();
 }
 
-bool Bullet::isOffScreen()
+bool Bullet::isOffScreen(float windowHeight)
 {
     return y < 0;
 }

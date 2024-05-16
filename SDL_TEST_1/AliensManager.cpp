@@ -2,7 +2,8 @@
 #include "AliensManager.hpp"
 #include<algorithm>
 
-AliensManager::AliensManager()
+AliensManager::AliensManager() :
+    rect()
 {}
 
 AliensManager::~AliensManager()
@@ -22,15 +23,62 @@ void AliensManager::Render()
     }
 }
 
+SDL_Rect AliensManager::getWaveRect()
+{
+    if (alienList.empty()) return {};
+
+    SDL_Rect temp = alienList.front()->getRect();
+
+    int nx = temp.x;
+    int ny = temp.y;
+    int fx = temp.x + temp.w;
+    int fy = temp.y + temp.h;
+
+    for (Alien *alien : alienList)
+    {
+        SDL_Rect newrect = alien->getRect();
+        nx = std::min(nx, newrect.x);
+        ny = std::min(ny, newrect.y);
+        fx = std::max(fx, newrect.x + newrect.w);
+        fy = std::max(fy, newrect.y + newrect.h);
+    }
+
+    temp.x = nx;
+    temp.y = ny;
+    temp.w = fx-nx;
+    temp.h = fy-ny;
+
+    return temp;
+}
+
 void AliensManager::Update()
 {
     for (Alien *alien : alienList)
     {
         alien->Update();
     }
+
+    SDL_Rect rect = getWaveRect();
+    if (rect.x + rect.w >= 800)
+    {
+        for (Alien *alien : alienList)
+        {
+            alien->direct = -1;
+            alien->check = 1;
+        }
+    }
+
+    if (rect.x <= 0)
+    {
+        for (Alien *alien : alienList)
+        {
+            alien->direct = 1;
+            alien->check = 1;
+        }
+    }
 }
 
-void AliensManager::Spawn(float x, float y)
+Alien* AliensManager::Spawn(float x, float y)
 {
     const char* pathList[3] = {
         "graphics/creep1.png",
@@ -44,6 +92,8 @@ void AliensManager::Spawn(float x, float y)
     alienList.push_back(alienIns);
     alienIns->x = x;
     alienIns->y = y;
+
+    return alienIns;
 }
 
 void AliensManager::SpawnWave(float xOrigin, float yOrigin, int w, int h, float xDistance, float yDistance)

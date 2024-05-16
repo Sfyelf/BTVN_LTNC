@@ -72,6 +72,7 @@ void Game::createObject()
 //    alienManager->Spawn(10, 10);
     alienManager->SpawnWave(50, 50, 8, 6, 90, 50);
 
+    //bullet = new Bullet(5, 10);
 }
 
 void Game::update()
@@ -80,6 +81,7 @@ void Game::update()
 
     ship->HandleInput();
     ship->HandleMove();
+    ship->UpdateBullet();
     alienManager->Update();
 }
 

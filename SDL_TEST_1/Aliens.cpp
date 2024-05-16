@@ -26,6 +26,15 @@ void Alien::Render()
 
 void Alien::Update()
 {
-    x += speed*Time::deltaTime();
-    if (x >= 50) y+= speed*Time::deltaTime();
+    x = x + speed*direct*Time::deltaTime();
+    if (check == 1)
+    {
+        y = y + 5;
+        check = 0;
+    }
+}
+
+SDL_Rect Alien::getRect()
+{
+    return alienImage.getRect();
 }
