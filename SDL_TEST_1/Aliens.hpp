@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <string>
 #include "Image.hpp"
+#include <list>
+#include "AliensBullet.hpp"
 
 class Alien
 {
@@ -13,6 +15,8 @@ public:
 
     void Render();
     void Update();
+    void Shoot();
+    void UpdateAlienBullet();
 
     double x, y, direct, check = 0;
 
@@ -24,5 +28,11 @@ private:
 
 
     double speed;
+
+    std::list<AliensBullet> alienBullet;
+
+    float alienBulletCooldown;
+    const float alienBulletCooldownTime;
+
 };
 

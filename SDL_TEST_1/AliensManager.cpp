@@ -56,6 +56,12 @@ void AliensManager::Update()
     for (Alien *alien : alienList)
     {
         alien->Update();
+        alien->UpdateAlienBullet();
+
+        if (std::rand() % 100 < 1)
+        {
+            alien->Shoot();
+        }
     }
 
     SDL_Rect rect = getWaveRect();

@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Aliens.cpp" />
 		<Unit filename="Aliens.hpp" />
+		<Unit filename="AliensBullet.cpp" />
+		<Unit filename="AliensBullet.hpp" />
 		<Unit filename="AliensManager.cpp" />
 		<Unit filename="AliensManager.hpp" />
 		<Unit filename="Bullet.cpp" />
