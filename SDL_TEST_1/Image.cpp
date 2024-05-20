@@ -37,7 +37,7 @@ void Image::ChangeImage(const char* texturesheet)
     objTexture = TextureManager::LoadTexture(texturesheet);
 }
 
-SDL_Rect Image::getRect()
+SDL_Rect Image::getRect() const
 {
     int w, h;
     if (SDL_QueryTexture(objTexture, NULL, NULL, &w, &h) != 0)

@@ -12,6 +12,8 @@ SDL_Renderer* Game::renderer = nullptr;
 //Manager manager;
 //auto& newShip(manager.addEntity());
 
+bool Game::gameEnd = 0;
+
 Game::Game()
 {}
 Game::~Game()
@@ -59,14 +61,23 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         return false;
     }
 
-    backgroundTexture = TextureManager::LoadTexture("graphics/bg.png");
+
 
 //    newShip.addComponent<PositionComponent>();
     return true;
 }
 
-void Game::createObject()
+void Game::createMenu()
 {
+    menuTexture = TextureManager::LoadTexture("graphics/exp4.png");
+    std::cout << "Menu created! \n";
+}
+
+void Game::createGame()
+{
+    backgroundTexture = TextureManager::LoadTexture("graphics/bg.png");
+    std::cout << "Background loaded! \n";
+
     ship = new Ship();
     alienManager = new AliensManager();
 //    alienManager->Spawn(10, 10);
@@ -79,10 +90,31 @@ void Game::update()
 {
     Input::Update();
 
-    ship->HandleInput();
-    ship->HandleMove();
-    ship->UpdateBullet();
-    alienManager->Update();
+    if (gameEnd == 0)
+    {
+        if (gameStart == 0)
+        {
+            if (Input::GetKey(SDL_SCANCODE_SPACE))
+            {
+                gameStart = 1;
+                Game::createGame();
+            }
+        }
+        else
+        {
+            ship->HandleInput();
+            ship->HandleMove();
+            ship->UpdateBullet();
+            alienManager->Update();
+        }
+
+    }
+    else
+    {
+        if (continueGame) resetGame();
+    }
+
+
 }
 
 void Game::render()
@@ -92,8 +124,20 @@ void Game::render()
     //bg
     SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
 
-    ship->Render();
-    alienManager->Render();
+    if (gameEnd == 0)
+    {
+        if (gameStart == 1)
+        {
+            ship->Render();
+            alienManager->Render();
+        }
+    }
+    else
+    {
+        continueGame = 1;
+    }
+
+
 
     //where to add stuff
     SDL_RenderPresent(renderer);
@@ -110,3 +154,19 @@ void Game::clean()
     std::cout << "Game Cleaned" << std::endl;
 }
 
+void Game::clearGame() {
+    // Clean up dynamically allocated objects
+    delete ship;
+    delete alienManager;
+    ship = nullptr;
+    alienManager = nullptr;
+
+    // Clear the screen
+}
+
+void Game::resetGame() {
+    // Reinitialize game objects
+    createGame();
+    continueGame = 0;
+    gameEnd = 0;
+}

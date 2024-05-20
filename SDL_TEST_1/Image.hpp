@@ -2,7 +2,7 @@
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 
-#include "Game.hpp"
+#include <SDL.h>
 
 class Image{
 public:
@@ -15,7 +15,7 @@ public:
     double xpos;
     double ypos;
 
-    SDL_Rect getRect();
+    SDL_Rect getRect() const;
 
 
 private:

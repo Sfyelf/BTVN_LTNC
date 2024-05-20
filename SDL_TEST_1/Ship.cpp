@@ -2,6 +2,8 @@
 #include "Ship.hpp"
 #include "Input.hpp"
 #include "Time.hpp"
+#include <iostream>
+#include "Game.hpp"
 
 Ship::Ship() :
     shipImage("graphics/ship.png", 0, 0),
@@ -53,22 +55,34 @@ void Ship::Shoot()
 
 void Ship::UpdateBullet()
 {
-    //std::cout << "Bullets count before update: " << bullets.size() << std::endl;
 
     for (auto it = bullets.begin(); it != bullets.end();) {
         it->Move();
         if (it->isOffScreen(640)) {
-            //std::cout << "Bullet removed at position: " << it->y << std::endl;
             it = bullets.erase(it);
         } else {
             ++it;
         }
     }
 
-    //std::cout << "Bullets count after update: " << bullets.size() << std::endl;
-
     if (bulletCooldown > 0)
     {
         bulletCooldown -= Time::deltaTime(); // Decrease the cooldown timer
     }
+}
+
+bool Ship::CheckCollision(const SDL_Rect& otherRect)
+{
+    SDL_Rect rect = getRect();
+    return SDL_HasIntersection(&rect, &otherRect);
+}
+
+SDL_Rect Ship::getRect()
+{
+    return shipImage.getRect();
+}
+
+void Ship::Dead()
+{
+    Game::gameEnd = 1;
 }

@@ -20,7 +20,7 @@ int main(int argc, char** argv){
         throw;
     }
 
-    game->createObject();
+    game->createMenu();
 
     while (true)
     {

@@ -18,7 +18,7 @@ public:
     void Shoot();
     void UpdateAlienBullet();
 
-    double x, y, direct, check = 0;
+    double x, y, direct = 1, check = 0;
 
     SDL_Rect getRect();
 
@@ -29,7 +29,7 @@ private:
 
     double speed;
 
-    std::list<AliensBullet> alienBullet;
+    std::list<AliensBullet*> alienBullet;
 
     float alienBulletCooldown;
     const float alienBulletCooldownTime;

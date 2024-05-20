@@ -58,10 +58,7 @@ void AliensManager::Update()
         alien->Update();
         alien->UpdateAlienBullet();
 
-        if (std::rand() % 100 < 1)
-        {
-            alien->Shoot();
-        }
+        alien->Shoot();
     }
 
     SDL_Rect rect = getWaveRect();
@@ -82,6 +79,8 @@ void AliensManager::Update()
             alien->check = 1;
         }
     }
+
+    //std::cout << "AliensManager ran! \n";
 }
 
 Alien* AliensManager::Spawn(float x, float y)

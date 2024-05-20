@@ -32,15 +32,16 @@
 1715174979 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\gameobject.hpp
 	"Game.hpp"
 
-1715367123 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.hpp
+1716226366 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.hpp
 	"SDL.h"
 	"SDL_image.h"
 	<iostream>
+	"Ship.hpp"
 
 1715403147 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\texturemanager.hpp
 	"Game.hpp"
 
-1715367943 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\main.cpp
+1716219670 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\main.cpp
 	"Game.hpp"
 	"Input.hpp"
 	"Time.hpp"
@@ -48,7 +49,7 @@
 1715403268 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\texturemanager.cpp
 	"TextureManager.hpp"
 
-1715733209 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.cpp
+1716225521 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\game.cpp
 	"Game.hpp"
 	"Input.hpp"
 	"TextureManager.hpp"
@@ -57,21 +58,23 @@
 	"Aliens.hpp"
 	"AliensManager.hpp"
 
-1715749380 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.hpp
+1716224155 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.hpp
 	"Image.hpp"
 	<vector>
 	<list>
 	"Bullet.hpp"
 
-1715826939 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.cpp
+1716225536 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\ship.cpp
 	"Ship.hpp"
 	"Input.hpp"
 	"Time.hpp"
-
-1715751383 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.hpp
+	<iostream>
 	"Game.hpp"
 
-1715751530 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.cpp
+1716224904 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.hpp
+	<SDL.h>
+
+1716224904 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\image.cpp
 	"Image.hpp"
 	"TextureManager.hpp"
 
@@ -87,19 +90,19 @@
 1715367538 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\time.hpp
 	"SDL.h"
 
-1716214141 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliens.cpp
+1716224642 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliens.cpp
 	"Aliens.hpp"
 	<SDL_image.h>
 	"Time.hpp"
 
-1716192651 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliens.hpp
+1716221400 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliens.hpp
 	<SDL.h>
 	<string>
 	"Image.hpp"
 	<list>
 	"AliensBullet.hpp"
 
-1716214580 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliensmanager.cpp
+1716221400 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliensmanager.cpp
 	"AliensManager.hpp"
 	<algorithm>
 
@@ -115,11 +118,12 @@
 	<SDL.h>
 	"Image.hpp"
 
-1716192068 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliensbullet.hpp
+1716224539 e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliensbullet.hpp
 	<SDL.h>
 	"Image.hpp"
 
-1716193061 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliensbullet.cpp
+1716224801 source:e:\btvn_ltnc_23020608_nguyenhuyhoang\btvn_ltnc\sdl_test_1\aliensbullet.cpp
 	"AliensBullet.hpp"
 	"Time.hpp"
+	"Game.hpp"
 

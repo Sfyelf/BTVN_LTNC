@@ -16,6 +16,10 @@ public:
     void HandleMove();
     void Shoot();
     void UpdateBullet();
+    void Dead();
+
+    bool CheckCollision(const SDL_Rect& otherRect);
+    SDL_Rect getRect();
 
 private:
     Image shipImage;

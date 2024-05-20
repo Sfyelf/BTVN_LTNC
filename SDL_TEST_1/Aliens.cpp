@@ -9,9 +9,11 @@ Alien::Alien(const char* path) :
     y(50),
     speed(20),
     alienBulletCooldown(0),
-    alienBulletCooldownTime(0.5)
+    alienBulletCooldownTime(7)
 {
-
+    float lb = 0.0f * alienBulletCooldownTime;
+    float up = 3.0f * alienBulletCooldownTime;
+    alienBulletCooldown = lb + static_cast<float>(std::rand()) / RAND_MAX * (up - lb);
 }
 
 Alien::~Alien()
@@ -27,7 +29,7 @@ void Alien::Render()
 
     for (auto bullets : alienBullet)
     {
-        bullets.Render();
+        bullets->Render();
     }
 }
 
@@ -49,8 +51,11 @@ SDL_Rect Alien::getRect()
 void Alien::Shoot()
 {
     if (alienBulletCooldown <= 0) {
-        alienBullet.emplace_back(x, y);
-        alienBulletCooldown = alienBulletCooldownTime; // Reset the cooldown timer
+        float lb = 0.5f * alienBulletCooldownTime;
+        float up = 2.0f * alienBulletCooldownTime;
+        alienBulletCooldown = lb + static_cast<float>(std::rand()) / RAND_MAX * (up - lb);
+
+        alienBullet.push_back(new AliensBullet(x, y));
     }
 }
 
@@ -58,9 +63,13 @@ void Alien::UpdateAlienBullet()
 {
     for (auto it = alienBullet.begin(); it != alienBullet.end();)
     {
-        it->Move();
-        if (it->isOffScreen()) {
+        AliensBullet *bullet = *it;
+        bullet->Move();
+        bullet->CheckHitShip();
+        if (bullet->isOffScreen()) {
+            delete bullet;
             it = alienBullet.erase(it);
+
         } else {
             ++it;
         }

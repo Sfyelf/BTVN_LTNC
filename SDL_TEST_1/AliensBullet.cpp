@@ -1,6 +1,7 @@
 
 #include "AliensBullet.hpp"
 #include "Time.hpp"
+#include "Game.hpp"
 
 AliensBullet::AliensBullet(float xalien, float yalien) :
     speed(300),
@@ -31,4 +32,23 @@ void AliensBullet::Render()
 bool AliensBullet::isOffScreen()
 {
     return y > 640;
+}
+
+SDL_Rect AliensBullet::getRect() const
+{
+    return aliensBulletImage.getRect();
+}
+
+bool AliensBullet::HitShip(const SDL_Rect &anotherRect)
+{
+    SDL_Rect shipRect = getRect();
+    return SDL_HasIntersection(&shipRect, &anotherRect);
+}
+
+void AliensBullet::CheckHitShip()
+{
+    if (HitShip(ship->getRect()))
+    {
+        ship->Dead();
+    }
 }
