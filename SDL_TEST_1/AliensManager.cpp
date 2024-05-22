@@ -1,6 +1,7 @@
 
 #include "AliensManager.hpp"
 #include<algorithm>
+#include "Aliens.hpp"
 
 AliensManager::AliensManager() :
     rect()
@@ -98,6 +99,8 @@ Alien* AliensManager::Spawn(float x, float y)
     alienIns->x = x;
     alienIns->y = y;
 
+    alienIns->manager = this;
+
     return alienIns;
 }
 
@@ -123,6 +126,8 @@ void AliensManager::Destroy(Alien* alien)
 
     delete alien;
     alienList.remove(alien);
+
+    //std::cout << alienList.size() << "\n";
 }
 
 void AliensManager::Clear()
@@ -132,4 +137,10 @@ void AliensManager::Clear()
         delete alien;
     }
     alienList.clear();
+}
+
+bool AliensManager::AllEnemyDead()
+{
+    if (alienList.size() == 0) return 1;
+    else return 0;
 }

@@ -2,7 +2,9 @@
 #pragma once
 
 #include <list>
-#include "Aliens.hpp"
+#include "SDL.h"
+
+class Alien;
 
 class AliensManager
 {
@@ -15,6 +17,7 @@ public:
     Alien* Spawn(float x, float y);
     void SpawnWave(float xOrigin, float yOrigin, int w, int h, float xDistance, float yDistance);
     void Destroy(Alien* alien);
+    bool AllEnemyDead();
 
     void Clear();
 

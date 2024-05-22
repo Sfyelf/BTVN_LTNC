@@ -86,3 +86,15 @@ void Ship::Dead()
 {
     Game::gameEnd = 1;
 }
+
+std::list<Bullet>& Ship::getBullets()
+{
+    return bullets;
+}
+
+void Ship::DestroyBullet(Bullet& bullet)
+{
+    bullets.remove_if([&bullet](const Bullet& b) {
+        return &b == &bullet;
+    });
+}

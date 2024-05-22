@@ -12,7 +12,13 @@ public:
 
     void Render();
     void Move();
+    void CheckHitAlien();
+    void Destroy();
+
     bool isOffScreen(float windowHeight);
+    bool HitAlien(const SDL_Rect &anotherRect);
+
+    SDL_Rect getRect() const;
 
     float x, y;
 

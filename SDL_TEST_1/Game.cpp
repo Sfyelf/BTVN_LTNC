@@ -22,6 +22,8 @@ Game::~Game()
 Ship* ship = nullptr;
 AliensManager* alienManager = nullptr;
 
+//Score* score = nullptr;
+
 bool Game::init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen)
 {
     int flags = 0;
@@ -55,6 +57,25 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         {
             return false;
         }
+
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+        {
+            std::cerr << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
+            return false;
+        }
+
+        // Load background music
+        backgroundMusic = Mix_LoadMUS("audio/music.wav");
+        if (backgroundMusic == nullptr) {
+            std::cerr << "Failed to load background music! SDL_mixer Error: " << Mix_GetError() << std::endl;
+            return false;
+        }
+
+        // Play background music
+        if (Mix_PlayMusic(backgroundMusic, -1) == -1) {
+            std::cerr << "Failed to play background music! SDL_mixer Error: " << Mix_GetError() << std::endl;
+            return false;
+        }
     }
     else
     {
@@ -69,7 +90,9 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
 
 void Game::createMenu()
 {
-    menuTexture = TextureManager::LoadTexture("graphics/exp4.png");
+    tvTexture = TextureManager::LoadTexture("graphics/tv.png");
+    menuTexture = TextureManager::LoadTexture("graphics/menu.png");
+    instrucTexture = TextureManager::LoadTexture("graphics/instruction.png");
     std::cout << "Menu created! \n";
 }
 
@@ -80,6 +103,8 @@ void Game::createGame()
 
     ship = new Ship();
     alienManager = new AliensManager();
+    win = 0;
+//    score = new Score();
 //    alienManager->Spawn(10, 10);
     alienManager->SpawnWave(50, 50, 8, 6, 90, 50);
 
@@ -94,7 +119,7 @@ void Game::update()
     {
         if (gameStart == 0)
         {
-            if (Input::GetKey(SDL_SCANCODE_SPACE))
+            if (Input::GetKey(SDL_SCANCODE_X))
             {
                 gameStart = 1;
                 Game::createGame();
@@ -102,18 +127,24 @@ void Game::update()
         }
         else
         {
+            if (Input::GetKey(SDL_SCANCODE_SPACE) || Input::GetKey(SDL_SCANCODE_LEFT)||Input::GetKey(SDL_SCANCODE_RIGHT)) instruc = 1;
+
             ship->HandleInput();
             ship->HandleMove();
             ship->UpdateBullet();
             alienManager->Update();
+
+            Game::gameWin();
         }
 
     }
     else
     {
+
         if (continueGame) resetGame();
     }
 
+    //std::cout << win << "\n";
 
 }
 
@@ -122,7 +153,18 @@ void Game::render()
     SDL_RenderClear(renderer);
 
     //bg
+    SDL_RenderCopy(renderer, menuTexture, NULL, NULL);
+    SDL_RenderCopy(renderer, tvTexture, NULL, NULL);
     SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
+    SDL_RenderCopy(renderer, tvTexture, NULL, NULL);
+
+    if (instruc == 0 && gameStart)
+    {
+        SDL_Rect srcRect = {0, 0, 91, 34};  // Assuming you want to copy the top-left 50x50 area of the texture
+        SDL_Rect destRect = {300, 400, 91*2, 34*2};
+        SDL_RenderCopy(renderer, instrucTexture, &srcRect, &destRect);
+    }
+
 
     if (gameEnd == 0)
     {
@@ -134,7 +176,21 @@ void Game::render()
     }
     else
     {
-        continueGame = 1;
+        if (win == 1)
+        {
+            gamewinTexture = TextureManager::LoadTexture("graphics/gamewin.png");
+            SDL_RenderCopy(renderer, gamewinTexture, NULL, NULL);
+        }
+        else
+        {
+            Game::gameOver();
+            SDL_RenderCopy(renderer, gameoverTexture, NULL, NULL);
+        }
+
+
+
+        if (Input::GetKey(SDL_SCANCODE_R)) continueGame = 1;
+
     }
 
 
@@ -150,8 +206,18 @@ void Game::clean()
     SDL_Quit();
 
     SDL_DestroyTexture(backgroundTexture);
+    SDL_DestroyTexture(menuTexture);
+    SDL_DestroyTexture(tvTexture);
+    SDL_DestroyTexture(gameoverTexture);
 
-    std::cout << "Game Cleaned" << std::endl;
+    // Free background music
+    Mix_FreeMusic(backgroundMusic);
+    backgroundMusic = nullptr;
+
+    // Quit SDL_mixer
+    Mix_CloseAudio();
+
+    //std::cout << "Game Cleaned" << std::endl;
 }
 
 void Game::clearGame() {
@@ -169,4 +235,15 @@ void Game::resetGame() {
     createGame();
     continueGame = 0;
     gameEnd = 0;
+}
+
+void Game::gameOver()
+{
+    gameoverTexture = TextureManager::LoadTexture("graphics/gameover.png");
+}
+
+void Game::gameWin()
+{
+    win = alienManager->AllEnemyDead();
+    if (win) gameEnd = 1;
 }

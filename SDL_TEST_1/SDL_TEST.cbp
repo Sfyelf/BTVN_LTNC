@@ -48,6 +48,9 @@
 		<Unit filename="Image.hpp" />
 		<Unit filename="Input.cpp" />
 		<Unit filename="Input.hpp" />
+		<Unit filename="Score.cpp" />
+		<Unit filename="Score.hpp" />
+		<Unit filename="Score.txt" />
 		<Unit filename="Ship.cpp" />
 		<Unit filename="Ship.hpp" />
 		<Unit filename="TextureManager.cpp" />

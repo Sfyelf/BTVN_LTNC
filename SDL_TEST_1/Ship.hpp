@@ -17,6 +17,8 @@ public:
     void Shoot();
     void UpdateBullet();
     void Dead();
+    void DestroyBullet(Bullet& bullet);
+    std::list<Bullet>& getBullets();
 
     bool CheckCollision(const SDL_Rect& otherRect);
     SDL_Rect getRect();

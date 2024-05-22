@@ -2,6 +2,7 @@
 #include "Aliens.hpp"
 #include <SDL_image.h>
 #include "Time.hpp"
+#include "Game.hpp"
 
 Alien::Alien(const char* path) :
     alienImage(path, 0, 0),
@@ -41,6 +42,8 @@ void Alien::Update()
         y = y + 5;
         check = 0;
     }
+
+    CheckHitBullet();
 }
 
 SDL_Rect Alien::getRect()
@@ -79,4 +82,43 @@ void Alien::UpdateAlienBullet()
     {
         alienBulletCooldown -= Time::deltaTime(); // Decrease the cooldown timer
     }
+}
+
+std::list<AliensBullet*> Alien::getBullets() const {
+    return alienBullet;
+}
+
+bool Alien::HitBullet(const SDL_Rect &anotherRect)
+{
+    SDL_Rect shipRect = getRect();
+    return SDL_HasIntersection(&shipRect, &anotherRect);
+}
+
+void Alien::CheckHitBullet()
+{
+    std::list<Bullet>& bullets = ship->getBullets();
+
+    for (auto& bullet : bullets)
+    {
+        if (HitBullet(bullet.getRect()))
+        {
+            Dead();
+            bullet.Destroy();
+//            score.score += 10;
+        }
+    }
+
+
+}
+
+
+bool Alien::CheckCollision(const SDL_Rect& otherRect)
+{
+    SDL_Rect rect = getRect();
+    return SDL_HasIntersection(&rect, &otherRect);
+}
+
+void Alien::Dead()
+{
+    manager->Destroy(this);
 }
