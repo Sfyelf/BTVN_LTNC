@@ -1,30 +1,30 @@
 
-#include "AliensManager.hpp"
+#include "BossManager.hpp"
 #include<algorithm>
-#include "Aliens.hpp"
+#include "Boss.hpp"
 
-AliensManager::AliensManager() :
+BossManager::BossManager() :
     rect()
 {}
 
-AliensManager::~AliensManager()
+BossManager::~BossManager()
 {
-    for (Alien *alien : alienList)
+    for (Boss *alien : alienList)
     {
         delete alien;
     }
     alienList.clear();
 }
 
-void AliensManager::Render()
+void BossManager::Render()
 {
-    for (Alien *alien : alienList)
+    for (Boss *alien : alienList)
     {
         alien->Render();
     }
 }
 
-SDL_Rect AliensManager::getWaveRect()
+SDL_Rect BossManager::getWaveRect()
 {
     if (alienList.empty()) return {};
 
@@ -35,7 +35,7 @@ SDL_Rect AliensManager::getWaveRect()
     int fx = temp.x + temp.w;
     int fy = temp.y + temp.h;
 
-    for (Alien *alien : alienList)
+    for (Boss *alien : alienList)
     {
         SDL_Rect newrect = alien->getRect();
         nx = std::min(nx, newrect.x);
@@ -52,9 +52,9 @@ SDL_Rect AliensManager::getWaveRect()
     return temp;
 }
 
-void AliensManager::Update()
+void BossManager::Update()
 {
-    for (Alien *alien : alienList)
+    for (Boss *alien : alienList)
     {
         alien->Update();
         alien->UpdateAlienBullet();
@@ -65,7 +65,7 @@ void AliensManager::Update()
     SDL_Rect rect = getWaveRect();
     if (rect.x + rect.w >= 800)
     {
-        for (Alien *alien : alienList)
+        for (Boss *alien : alienList)
         {
             alien->direct = -1;
             alien->check = 1;
@@ -74,27 +74,19 @@ void AliensManager::Update()
 
     if (rect.x <= 0)
     {
-        for (Alien *alien : alienList)
+        for (Boss *alien : alienList)
         {
             alien->direct = 1;
             alien->check = 1;
         }
     }
 
-    //std::cout << "AliensManager ran! \n";
+    //std::cout << "BossManager ran! \n";
 }
 
-Alien* AliensManager::Spawn(float x, float y)
+Boss* BossManager::Spawn(float x, float y)
 {
-    const char* pathList[3] = {
-        "graphics/creep1.png",
-        "graphics/creep2.png",
-        "graphics/creep3.png"
-    };
-
-    int num = rand()%3;
-
-    Alien *alienIns = new Alien(pathList[num]);
+    Boss *alienIns = new Boss("graphics/extra.png");
     alienList.push_back(alienIns);
     alienIns->x = x;
     alienIns->y = y;
@@ -104,22 +96,12 @@ Alien* AliensManager::Spawn(float x, float y)
     return alienIns;
 }
 
-void AliensManager::SpawnWave(float xOrigin, float yOrigin, int w, int h, float xDistance, float yDistance)
+void BossManager::SpawnWave(float xOrigin, float yOrigin, int w, int h, float xDistance, float yDistance)
 {
-    for (int i = 0; i < w; i++)
-    {
-        for (int j = 0; j < h; j++)
-        {
-            float xpos = xOrigin + i * xDistance;
-            float ypos = yOrigin + j * yDistance;
 
-            Spawn(xpos, ypos);
-
-        }
-    }
 }
 
-void AliensManager::Destroy(Alien* alien)
+void BossManager::Destroy(Boss* alien)
 {
     auto alienIterator = std::find(alienList.begin(), alienList.end(), alien);
     if (alienIterator == alienList.end()) return;
@@ -130,7 +112,7 @@ void AliensManager::Destroy(Alien* alien)
     //std::cout << alienList.size() << "\n";
 }
 
-void AliensManager::Clear()
+void BossManager::Clear()
 {
     for (auto alien : alienList)
     {
@@ -139,17 +121,17 @@ void AliensManager::Clear()
     alienList.clear();
 }
 
-bool AliensManager::AllEnemyDead()
+bool BossManager::AllEnemyDead()
 {
     if (alienList.size() == 0) return 1;
     else return 0;
 }
 
-void AliensManager::addExplosion(int x, int y) {
+void BossManager::addExplosion(int x, int y) {
     explosions.emplace_back(x, y);
 }
 
-void AliensManager::updateExplosions() {
+void BossManager::updateExplosions() {
     for (auto it = explosions.begin(); it != explosions.end();) {
         it->Update();
         if (it->isFinished()) {
@@ -160,8 +142,9 @@ void AliensManager::updateExplosions() {
     }
 }
 
-void AliensManager::renderExplosions() {
+void BossManager::renderExplosions() {
     for (auto& explosion : explosions) {
         explosion.Render();
     }
 }
+

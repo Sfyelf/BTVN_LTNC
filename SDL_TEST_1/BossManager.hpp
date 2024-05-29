@@ -6,20 +6,20 @@
 #include "SDL.h"
 #include "Explosion.hpp"
 
-class Alien;
+class Boss;
 
-class AliensManager
+class BossManager
 {
 public:
-    AliensManager();
-    ~AliensManager();
+    BossManager();
+    ~BossManager();
 
     void Render();
     void Update();
-    Alien* Spawn(float x, float y);
+    Boss* Spawn(float x, float y);
 
     void SpawnWave(float xOrigin, float yOrigin, int w, int h, float xDistance, float yDistance);
-    void Destroy(Alien* alien);
+    void Destroy(Boss* alien);
     bool AllEnemyDead();
 
     void addExplosion(int x, int y);
@@ -34,8 +34,9 @@ public:
     float xDistance, yDistance;
 
 private:
-    std::list<Alien*> alienList;
+    std::list<Boss*> alienList;
     std::vector<Explosion> explosions;
 
     SDL_Rect rect;
 };
+

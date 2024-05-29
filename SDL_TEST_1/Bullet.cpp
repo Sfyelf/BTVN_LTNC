@@ -53,4 +53,5 @@ void Bullet::CheckHitAlien()
 void Bullet::Destroy()
 {
     ship->DestroyBullet(*this);
+    Mix_PlayChannel(-1, Game::explosionSound, 0);
 }

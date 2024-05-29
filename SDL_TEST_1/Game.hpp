@@ -37,6 +37,9 @@ class Game
         static bool gameEnd;
         bool win;
 
+        static Mix_Chunk* shootSound;
+        static Mix_Chunk* explosionSound;
+
 
     private:
         int cnt = 0;

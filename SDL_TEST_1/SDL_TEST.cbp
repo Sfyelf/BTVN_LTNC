@@ -38,10 +38,16 @@
 		<Unit filename="AliensBullet.hpp" />
 		<Unit filename="AliensManager.cpp" />
 		<Unit filename="AliensManager.hpp" />
+		<Unit filename="Boss.cpp" />
+		<Unit filename="Boss.hpp" />
+		<Unit filename="BossManager.cpp" />
+		<Unit filename="BossManager.hpp" />
 		<Unit filename="Bullet.cpp" />
 		<Unit filename="Bullet.hpp" />
 		<Unit filename="Components.hpp" />
 		<Unit filename="ECS.hpp" />
+		<Unit filename="Explosion.cpp" />
+		<Unit filename="Explosion.hpp" />
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.hpp" />
 		<Unit filename="Image.cpp" />

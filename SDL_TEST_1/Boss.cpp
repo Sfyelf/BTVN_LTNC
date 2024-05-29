@@ -1,28 +1,28 @@
 
-#include "Aliens.hpp"
+#include "Boss.hpp"
 #include <SDL_image.h>
 #include "Time.hpp"
 #include "Game.hpp"
 
-Alien::Alien(const char* path) :
+Boss::Boss(const char* path) :
     alienImage(path, 0, 0),
     x(50),
     y(50),
-    speed(20),
+    speed(100),
     alienBulletCooldown(0),
-    alienBulletCooldownTime(7)
+    alienBulletCooldownTime(3)
 {
     float lb = 0.0f * alienBulletCooldownTime;
     float up = 3.0f * alienBulletCooldownTime;
     alienBulletCooldown = lb + static_cast<float>(std::rand()) / RAND_MAX * (up - lb);
 }
 
-Alien::~Alien()
+Boss::~Boss()
 {
 
 }
 
-void Alien::Render()
+void Boss::Render()
 {
     alienImage.xpos = x;
     alienImage.ypos = y;
@@ -34,7 +34,7 @@ void Alien::Render()
     }
 }
 
-void Alien::Update()
+void Boss::Update()
 {
     x = x + speed*direct*Time::deltaTime();
     if (check == 1)
@@ -46,12 +46,12 @@ void Alien::Update()
     CheckHitBullet();
 }
 
-SDL_Rect Alien::getRect()
+SDL_Rect Boss::getRect()
 {
     return alienImage.getRect();
 }
 
-void Alien::Shoot()
+void Boss::Shoot()
 {
     if (alienBulletCooldown <= 0) {
         float lb = 0.5f * alienBulletCooldownTime;
@@ -62,7 +62,7 @@ void Alien::Shoot()
     }
 }
 
-void Alien::UpdateAlienBullet()
+void Boss::UpdateAlienBullet()
 {
     for (auto it = alienBullet.begin(); it != alienBullet.end();)
     {
@@ -84,17 +84,17 @@ void Alien::UpdateAlienBullet()
     }
 }
 
-std::list<AliensBullet*> Alien::getBullets() const {
+std::list<AliensBullet*> Boss::getBullets() const {
     return alienBullet;
 }
 
-bool Alien::HitBullet(const SDL_Rect &anotherRect)
+bool Boss::HitBullet(const SDL_Rect &anotherRect)
 {
     SDL_Rect shipRect = getRect();
     return SDL_HasIntersection(&shipRect, &anotherRect);
 }
 
-void Alien::CheckHitBullet()
+void Boss::CheckHitBullet()
 {
     std::list<Bullet>& bullets = ship->getBullets();
 
@@ -112,14 +112,15 @@ void Alien::CheckHitBullet()
 }
 
 
-bool Alien::CheckCollision(const SDL_Rect& otherRect)
+bool Boss::CheckCollision(const SDL_Rect& otherRect)
 {
     SDL_Rect rect = getRect();
     return SDL_HasIntersection(&rect, &otherRect);
 }
 
-void Alien::Dead()
+void Boss::Dead()
 {
     manager->Destroy(this);
     manager->addExplosion(x, y);
 }
+

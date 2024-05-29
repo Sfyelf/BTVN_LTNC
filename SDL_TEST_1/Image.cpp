@@ -49,3 +49,8 @@ SDL_Rect Image::getRect() const
 
     return drect;
 }
+
+SDL_Texture* Image::getTexture()
+{
+    return objTexture;
+}

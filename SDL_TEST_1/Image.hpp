@@ -15,6 +15,8 @@ public:
     double xpos;
     double ypos;
 
+    SDL_Texture *getTexture();
+
     SDL_Rect getRect() const;
 
 

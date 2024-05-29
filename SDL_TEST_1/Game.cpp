@@ -6,8 +6,12 @@
 #include "Ship.hpp"
 #include "Aliens.hpp"
 #include "AliensManager.hpp"
+#include "Boss.hpp"
+#include "BossManager.hpp"
 
 SDL_Renderer* Game::renderer = nullptr;
+Mix_Chunk* Game::shootSound = nullptr;
+Mix_Chunk* Game::explosionSound = nullptr;
 
 //Manager manager;
 //auto& newShip(manager.addEntity());
@@ -21,6 +25,7 @@ Game::~Game()
 
 Ship* ship = nullptr;
 AliensManager* alienManager = nullptr;
+BossManager* bossManager = nullptr;
 
 //Score* score = nullptr;
 
@@ -76,6 +81,18 @@ bool Game::init(const char *title, int xpos, int ypos, int width, int height, bo
             std::cerr << "Failed to play background music! SDL_mixer Error: " << Mix_GetError() << std::endl;
             return false;
         }
+
+        shootSound = Mix_LoadWAV("audio/laser.wav");  // Load the shooting sound effect
+        if (shootSound == nullptr) {
+            std::cout << "Failed to load shoot sound effect! SDL_mixer Error: " << Mix_GetError() << std::endl;
+            return false;
+        }
+
+        explosionSound = Mix_LoadWAV("audio/explosion.wav");  // Load the explosion sound effect
+        if (explosionSound == nullptr) {
+            std::cout << "Failed to load explosion sound effect! SDL_mixer Error: " << Mix_GetError() << std::endl;
+            return false;
+        }
     }
     else
     {
@@ -103,10 +120,12 @@ void Game::createGame()
 
     ship = new Ship();
     alienManager = new AliensManager();
+    bossManager = new BossManager();
     win = 0;
 //    score = new Score();
 //    alienManager->Spawn(10, 10);
     alienManager->SpawnWave(50, 50, 8, 6, 90, 50);
+    bossManager->Spawn(0, 0);
 
     //bullet = new Bullet(5, 10);
 }
@@ -133,6 +152,9 @@ void Game::update()
             ship->HandleMove();
             ship->UpdateBullet();
             alienManager->Update();
+            alienManager->updateExplosions();
+            bossManager->Update();
+            bossManager->updateExplosions();
 
             Game::gameWin();
         }
@@ -172,6 +194,10 @@ void Game::render()
         {
             ship->Render();
             alienManager->Render();
+            alienManager->renderExplosions();
+            bossManager->Render();
+            bossManager->renderExplosions();
+
         }
     }
     else
@@ -212,6 +238,8 @@ void Game::clean()
 
     // Free background music
     Mix_FreeMusic(backgroundMusic);
+    Mix_FreeChunk(explosionSound);
+    Mix_FreeChunk(shootSound);
     backgroundMusic = nullptr;
 
     // Quit SDL_mixer
@@ -224,8 +252,10 @@ void Game::clearGame() {
     // Clean up dynamically allocated objects
     delete ship;
     delete alienManager;
+    delete bossManager;
     ship = nullptr;
     alienManager = nullptr;
+    bossManager = nullptr;
 
     // Clear the screen
 }

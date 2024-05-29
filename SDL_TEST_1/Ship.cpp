@@ -49,7 +49,8 @@ void Ship::Shoot()
     if (bulletCooldown <= 0)
     {
         bullets.emplace_back(x, y);
-        bulletCooldown = bulletCooldownTime; // Reset the cooldown timer
+        bulletCooldown = bulletCooldownTime;
+        Mix_PlayChannel(-1, Game::shootSound, 0); // Reset the cooldown timer
     }
 }
 
